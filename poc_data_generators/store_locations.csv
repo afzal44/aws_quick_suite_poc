@@ -1,0 +1,11 @@
+﻿store_id,store_name,city,state,region,district,store_type,square_footage,opened_date,manager_name,phone,email,has_fitmap,parking_spaces,avg_daily_traffic,employee_count
+5011,DXL Store 5011,New York,NY,Northeast,Metro,Flagship,15000,2010-03-15,Michael Jones,(709) 854-4050,store5011@dxl.com,False,101,235,46
+9330,DXL Store 9330,Los Angeles,CA,West,Pacific,Standard,12000,2012-06-20,Robert Williams,(545) 648-6922,store9330@dxl.com,True,93,265,16
+9422,DXL Store 9422,Chicago,IL,Midwest,Central,Standard,11000,2013-09-10,John Smith,(394) 795-6087,store9422@dxl.com,True,193,375,26
+9588,DXL Store 9588,Houston,TX,South,Southwest,Standard,10500,2014-02-28,Patricia Brown,(833) 912-2244,store9588@dxl.com,True,73,146,40
+9451,DXL Store 9451,Phoenix,AZ,West,Southwest,Standard,9500,2015-05-12,Robert Williams,(349) 933-6573,store9451@dxl.com,True,151,168,39
+9851,DXL Store 9851,Philadelphia,PA,Northeast,Mid-Atlantic,Standard,11500,2016-08-22,John Smith,(953) 500-2346,store9851@dxl.com,True,107,326,17
+9200,DXL Store 9200,San Antonio,TX,South,Southwest,Outlet,8000,2017-11-05,Mary Johnson,(761) 358-5485,store9200@dxl.com,True,176,214,29
+9100,DXL Store 9100,San Diego,CA,West,Pacific,Standard,10000,2018-01-18,Mary Johnson,(431) 650-4538,store9100@dxl.com,True,53,251,30
+9500,DXL Store 9500,Dallas,TX,South,Southwest,Flagship,14000,2019-04-30,John Smith,(826) 694-8191,store9500@dxl.com,False,192,382,27
+9600,DXL Store 9600,Miami,FL,South,Southeast,Standard,9000,2020-07-15,Patricia Brown,(390) 731-7547,store9600@dxl.com,False,116,461,38

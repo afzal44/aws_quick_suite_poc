@@ -1,0 +1,6 @@
+﻿segment_id,segment_name,min_annual_spend,min_transactions,benefits,priority_level
+VIP,VIP Customers,5000,20,"Free shipping, 20% discount, early access",1
+PREMIUM,Premium Customers,2500,10,"Free shipping, 15% discount",2
+STANDARD,Standard Customers,1000,5,10% discount on select items,3
+BASIC,Basic Customers,0,1,Standard pricing,4
+GOLD,Gold Members,3500,15,"Free shipping, 18% discount, birthday gift",2

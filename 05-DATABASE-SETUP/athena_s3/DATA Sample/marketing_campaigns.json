@@ -1,0 +1,89 @@
+[
+  {
+    "campaign_id": "SPRING2024",
+    "campaign_name": "Spring Sale 2024",
+    "start_date": "2024-03-01",
+    "end_date": "2024-04-30",
+    "discount_percent": 20,
+    "budget": 50000,
+    "target_audience": "All Customers",
+    "channels": [
+      "Email",
+      "Social Media",
+      "In-Store"
+    ],
+    "utm_campaign": "spring_sale",
+    "utm_medium": "email",
+    "utm_source": "newsletter"
+  },
+  {
+    "campaign_id": "SUMMER2024",
+    "campaign_name": "Summer Clearance 2024",
+    "start_date": "2024-06-01",
+    "end_date": "2024-07-31",
+    "discount_percent": 30,
+    "budget": 75000,
+    "target_audience": "Loyalty Members",
+    "channels": [
+      "Email",
+      "SMS",
+      "Social Media"
+    ],
+    "utm_campaign": "summer_promo",
+    "utm_medium": "social",
+    "utm_source": "facebook"
+  },
+  {
+    "campaign_id": "FALL2024",
+    "campaign_name": "Fall Collection Launch",
+    "start_date": "2024-09-01",
+    "end_date": "2024-10-31",
+    "discount_percent": 15,
+    "budget": 60000,
+    "target_audience": "New Customers",
+    "channels": [
+      "Google Ads",
+      "Social Media",
+      "In-Store"
+    ],
+    "utm_campaign": "fall_clearance",
+    "utm_medium": "cpc",
+    "utm_source": "google"
+  },
+  {
+    "campaign_id": "HOLIDAY2024",
+    "campaign_name": "Holiday Sale 2024",
+    "start_date": "2024-11-15",
+    "end_date": "2024-12-31",
+    "discount_percent": 25,
+    "budget": 100000,
+    "target_audience": "All Customers",
+    "channels": [
+      "Email",
+      "Social Media",
+      "TV",
+      "In-Store"
+    ],
+    "utm_campaign": "holiday_2024",
+    "utm_medium": "email",
+    "utm_source": "newsletter"
+  },
+  {
+    "campaign_id": "BLACKFRI2024",
+    "campaign_name": "Black Friday 2024",
+    "start_date": "2024-11-29",
+    "end_date": "2024-11-29",
+    "discount_percent": 40,
+    "budget": 150000,
+    "target_audience": "All Customers",
+    "channels": [
+      "Email",
+      "Social Media",
+      "Google Ads",
+      "In-Store"
+    ],
+    "utm_campaign": "black_friday",
+    "utm_medium": "email",
+    "utm_source": "newsletter"
+  }
+]

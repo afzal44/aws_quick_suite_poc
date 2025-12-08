@@ -1,0 +1,42 @@
+[
+  {
+    "device_id": "iPad14,5",
+    "device_name": "iPad Pro 11-inch (4th generation)",
+    "manufacturer": "Apple",
+    "os": "iOS",
+    "camera_resolution": "12MP",
+    "scan_accuracy": "98%",
+    "recommended": true,
+    "deployment_date": "2022-10-18"
+  },
+  {
+    "device_id": "iPad13,8",
+    "device_name": "iPad Pro 12.9-inch (5th generation)",
+    "manufacturer": "Apple",
+    "os": "iOS",
+    "camera_resolution": "12MP",
+    "scan_accuracy": "99%",
+    "recommended": true,
+    "deployment_date": "2021-05-21"
+  },
+  {
+    "device_id": "iPhone14,2",
+    "device_name": "iPhone 13 Pro",
+    "manufacturer": "Apple",
+    "os": "iOS",
+    "camera_resolution": "12MP",
+    "scan_accuracy": "95%",
+    "recommended": false,
+    "deployment_date": "2021-09-24"
+  },
+  {
+    "device_id": "Android Tablet",
+    "device_name": "Samsung Galaxy Tab S8",
+    "manufacturer": "Samsung",
+    "os": "Android",
+    "camera_resolution": "13MP",
+    "scan_accuracy": "96%",
+    "recommended": true,
+    "deployment_date": "2022-02-25"
+  }
+]

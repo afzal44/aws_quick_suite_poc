@@ -1,0 +1,40 @@
+dxlg_olap_orders.invoice  table data in redshift cluster
+
+invoiceid	invoice_pk	orderid	orderpk	createdtimestamp	cleanuptaskid	errordescription	iserror	publishcount	process	failedamount	fulfillmentdate	sellinglocationid	updatedby	amountprocessed	totalcharges	invoicesubtotal	parentorderid	taxexemptid	totaltaxes	totaldiscounts	publishstatusid	statusid	updatedtimestamp	createdby	invoicetypeid	customerid	orgid	contextid	packageid	invoicetotal	unique_identifier	invoiceadditional	messageid	load_date	update_date
+
+
+dxlg_olap_orders.orderchargedetail  table data in redshift cluster
+orderid	taxcode	chargetotal	istaxincluded	isoverridden	originalchargeamount	isinformational	isprorated	fulfillmentgroupid	isorderdiscount	isreturncharge	isproratedatsamelevel	chargetypeid	chargedisplayname
+122360441	Shipping	10	FALSE	FALSE		FALSE	TRUE		FALSE	FALSE	FALSE	Shipping	Shipping
+122330376	Shipping	0	FALSE	FALSE		FALSE	TRUE		FALSE	FALSE	FALSE	Shipping	Shipping
+
+dxlg_olap_orders.orderheader  table data in redshift cluster
+orderid	createdtimestamp	iscancelled	isconfirmed	maxfulfillmentstatusid	minfulfillmentstatusid	ordertypeid	orgid	sellinglocationid	messageid	utmcampaign	utmmedium	utmsource	customeremail	fulfillmentstatus	alternateorderid
+125572026	2021-01-26T22:53:33.947	FALSE	TRUE	3000	3000	WEB	dxlg-us		00715bb3-1fa3-4ee0-bed4-205d5cb5d6f6						
+124470091	2020-12-24T09:44:05.106	FALSE	TRUE	3000	3000	WEB	dxlg-us		009187a2-eb92-4c6b-8db0-3851121dd7fe						
+
+
+
+dxlg_olap_orders.orderline  table data in redshift cluster
+orderlineid	orderid	itemid	cancelledtotaldiscounts	maxappeasementamount	orderlinesubtotal	orderlinetotal	quantity	refundprice	returnlinetotalwithoutfees	returnablelinetotal	returnablequantity	taxoverridevalue	taxableamount	totalcharges	totaldiscountonitem	totaldiscounts	totaltaxes	unitprice	messageid	maxfulfillmentstatusid	minfulfillmentstatusid	fulfillmentstatus	isonhold	isreturn	isevenexchange	iscancelled	parentorderlineid	parentorderid	createdtimestamp	orderline_pk
+2	090420215	775376			196	196	2				0							98	e42d53f5-93fc-42dc-9291-7cf6dfbcf11d											
+1	100210949	676596			49.5	53.58	1		0		0							49.5	a4e90599-a0ff-433d-99d2-1914debfff1c											
+
+
+
+dxlg_olap_orders.orderline_items  table data in redshift cluster
+itemid	itembarcode	itembrand	itemcolordescription	itemdepartmentname	itemdepartmentnumber	itemdescription	itemseason	itemsize	itemstyle	itemtaxcode	originalunitprice	itemshortdescription
+1009608		DEERSTAGS	NAVY			This casual loafer accommodates widths easily and has breathable mesh inserts. Crafted of manmade materials, it is lightweight, cool and comfortable. Imported.		110 W	M7544	A_CLTH_GEN		Deer Stags&#174; Sailor Slip-Ons
+1009609		DEERSTAGS	NAVY			This casual loafer accommodates widths easily and has breathable mesh inserts. Crafted of manmade materials, it is lightweight, cool and comfortable. Imported.		120 W	M7544	A_CLTH_GEN		Deer Stags&#174; Sailor Slip-Ons
+
+
+dxlg_olap_orders.payment  table data in redshift cluster
+payment_pk	orderid	orderpk	createdby	createdtimestamp	updatedby	updatedtimestamp	messages	orgid	paymentgroupid	customerid	iscancelled	statusid	messageid	load_date	update_date
+
+
+
+dxlg_olap_orders.quantitydetail  table data in redshift cluster
+
+quantitydetail_pk	quantitydetailid	orderid	orderline_pk	statusid	updatedtimestamp	createdby	createdtimestamp	quantity	itemid	orgid	updatedby	uom	contextid	messageid	load_date	update_date
+6303334521944523011	6761020771505371795206	500294976	6303334521404383560	1000	2021-08-30T14:24:13.142	Ability_API@dxlg.com	2021-08-30T14:24:12.194	0	1222483	dxlg-us	Ability_API@dxlg.com	EA	eb1ced29-1f77-4f04-9a11-4c8a380c924d	b1c631c8-948e-4d05-b58c-d7ea35535634	30:09.5	30:09.5
+6303406711748008039	6833210569241809972547	500294976	6303334521654448202	3600	2021-08-30T16:25:29.146	Store9851@dxlg.com	2021-08-30T16:24:31.174	0	1222647	dxlg-us	Store9851@dxlg.com	EA	4e59606b-6c2d-4905-9c83-129e2372d042	b1c631c8-948e-4d05-b58c-d7ea35535634	30:09.5	30:09.5

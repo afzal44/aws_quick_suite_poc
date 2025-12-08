@@ -1,0 +1,56 @@
+cimb_repl.customer table data in redshift cluster 
+
+customer_id	language_code	alpha_key	phonetic_key	customer_no	title	first_name	last_name	gender	marital_status	next_address_id	distribution_status	landmark_date_a	landmark_date_b	segmentation_value_a	segmentation_value_b	segmentation_value_c	segmentation_value_d	segmentation_code_a	segmentation_code_b	segmentation_code_c	segmentation_code_d	segmentation_flag_a	segmentation_flag_b	segmentation_flag_c	segmentation_flag_d	segmentation_flag_e	segmentation_flag_f	status	salutation	head_of_household_flag	timestamp	original_division_id	company_name	job_title	birth_date	birth_day	is_complete	complete_date	complete_modify_date	system_modify_date
+555	ENG	MATOS   RAIM		99911609215	Mr	Raimundo	Matos	M	U	2	0											0	0	0	0	0	0	A		1	00000001A6FA6DCF	2					0			23-01-2024 15:19
+673	ENG	BROWN   JOHN		2.20001E+11		JOHN	Brown Jr	M	U	3	0											0	0	0	0	0	0	A		1	00000001DF279C30	2					0			25-04-2024 09:10
+
+cimb_repl.address table data in redshift cluster 
+
+customer_id	address_id	country_code	address_match_key	address_type_code	mail_indicator	carrier_route	address_ncoa_date	address_1	address_2	address_3	address_4	address_5	address_6	post_code	date_last_modified	address_error	address_longitude	address_latitude	timestamp	create_store_no	modify_store_no	create_user_id	create_date	modify_user_id	create_source_id	create_comment	modify_source_id	modify_comment	posted_date	old_customer_id	temp_old_cust_no
+979099	1	USA	1306826    LEISU	HOME	0			26 Leisure Ln		Freeville	NY			13068-9588	24-02-2015 00:00	R913	-76.320446	42.525079	000000000A53A495	9588		-2	20-05-2007 00:00	-2	1		0		24-02-2015 00:00		
+979209	1	USA	321591137  SALID	HOME	0			1137 Salido Ave		Lady Lake	FL			32159-9451	30-09-2019 00:00	R913			000000000A53A498	4		-2	31-03-2007 00:00	-2	1		0		30-09-2019 00:00		
+
+
+
+cimb_repl.email table data in redshift cluster
+customer_id	address_id	country_code	address_match_key	address_type_code	mail_indicator	carrier_route	address_ncoa_date	address_1	address_2	address_3	address_4	address_5	address_6	post_code	date_last_modified	address_error	address_longitude	address_latitude	timestamp	create_store_no	modify_store_no	create_user_id	create_date	modify_user_id	create_source_id	create_comment	modify_source_id	modify_comment	posted_date	old_customer_id	temp_old_cust_no
+979099	1	USA	1306826    LEISU	HOME	0			26 Leisure Ln		Freeville	NY			13068-9588	24-02-2015 00:00	R913	-76.320446	42.525079	000000000A53A495	9588		-2	20-05-2007 00:00	-2	1		0		24-02-2015 00:00		
+979209	1	USA	321591137  SALID	HOME	0			1137 Salido Ave		Lady Lake	FL			32159-9451	30-09-2019 00:00	R913			000000000A53A498	4		-2	31-03-2007 00:00	-2	1		0		30-09-2019 00:00		
+
+
+cimb_repl.household table data in redshift cluster
+household_id	household_match_key
+137	00719711142HCBOX     GARCI    
+252	0080110276 POBOX     BARZE    
+
+
+cimb_repl.reward_detail table data in redshift cluster
+reward_transaction_id	line_no	class_code	style_id	quantity	net_retail	markdown_percent	coupon_code	regular_points	bonus_points	net_retail_central	header_bonus_points	tender_bonus_points	return_flag	original_reward_tran_id	original_reward_line_no	returned_quantity	exchange_for_line_no
+84300288	1	230361620	255451	-1	-87.5	0		0	0	-87.5	0	0	0	82754313	2	0	
+84300288	4	230361620	255472	1	87.5	23		0	0	87.5	0	0	0			0	
+
+
+
+cimb_repl.store table data in redshift cluster
+
+store_no	division_id	store_short_name	store_name	next_customer_no	sales_associate_no_default	store_country_code	reward_redemption_flag	real_time_rewards_flag	timestamp	sales_channel_code	division_set_id	eom_id
+1	2	REPP CATALOG	Repp Catalog	10000001	9999	USA	0	1	00000001E65D125E	STR	1	
+2	2	REPP E-COMME	Repp E-Commerce	20000001	9999	USA	0	1	00000001E65D125F	STR	1	
+
+
+cimb_repl.transaction_detail table data in redshift cluster
+transaction_id	transaction_line_no	sale_or_return_indicator	sales_associate_no	style_id	color_code	size_description	quantity	net_retail	cost	markdown_percent	comments	promotion_flag	class_code	net_retail_central	cost_central	markdown_amount	markdown_amount_central
+59053996	1	S	88663	165336	1001	48W30L	1	48.73	22.11	25		0	8054390	48.73	22.11	16.24	16.24
+59053996	2	S	88663	103110	9921	46W30L	1	37.49	26.47	50		0	12112609	37.49	26.47	37.49	37.49
+
+
+cimb_repl.transaction_header table data in redshift cluster
+transaction_id	sales_module_transaction_id	transaction_source	tender_type	store_no	customer_id	sales_associate_no	transaction_type	transaction_date	pos_transaction_no	register_no	segmentation_flag_a	segmentation_flag_b	segmentation_flag_c	segmentation_flag_d	segmentation_flag_e	segmentation_flag_f	segmentation_flag_g	segmentation_flag_h	customer_no_flag	total_net_retail	no_transaction_lines	reward_points_flag	total_net_retail_central	exchange_rate	currency_code	posted_date	transaction_time	tender_amount_total	tender_amount_total_central	no_tender_lines
+58477061	0	1	AMEX	5011	27663909	20326	S	01-01-2012 00:00	45549	2	0	0	0	0	0	0	0	0	1	158	1	1	158	1	USD	02-01-2012 12:14	01-01-1900 00:00	158	158	1
+58477068	0	1	CASH	5011	14511136	71218	S	01-01-2012 00:00	97102	4	0	0	0	0	0	0	0	0	1	7.1	2	1	7.1	1	USD	02-01-2012 12:14	01-01-1900 00:00	7.1	7.1	1
+
+
+cimb_repl.transaction_tender table data in redshift cluster
+transaction_id	transaction_line_no	sale_or_return_indicator	sales_associate_no	style_id	color_code	size_description	quantity	net_retail	cost	markdown_percent	comments	promotion_flag	class_code	net_retail_central	cost_central	markdown_amount	markdown_amount_central
+59053996	1	S	88663	165336	1001	48W30L	1	48.73	22.11	25		0	8054390	48.73	22.11	16.24	16.24
+59053996	2	S	88663	103110	9921	46W30L	1	37.49	26.47	50		0	12112609	37.49	26.47	37.49	37.49

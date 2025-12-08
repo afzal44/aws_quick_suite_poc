@@ -1,0 +1,92 @@
+[
+  {
+    "brand_id": "POLO",
+    "brand_name": "Polo Ralph Lauren",
+    "category": "Premium",
+    "country": "USA",
+    "year_founded": 1967,
+    "website": "www.ralphlauren.com",
+    "price_range": "High"
+  },
+  {
+    "brand_id": "TOMMY",
+    "brand_name": "Tommy Hilfiger",
+    "category": "Premium",
+    "country": "USA",
+    "year_founded": 1985,
+    "website": "www.tommy.com",
+    "price_range": "Medium-High"
+  },
+  {
+    "brand_id": "CALVIN",
+    "brand_name": "Calvin Klein",
+    "category": "Premium",
+    "country": "USA",
+    "year_founded": 1968,
+    "website": "www.calvinklein.com",
+    "price_range": "Medium-High"
+  },
+  {
+    "brand_id": "BROOKS",
+    "brand_name": "Brooks Brothers",
+    "category": "Premium",
+    "country": "USA",
+    "year_founded": 1818,
+    "website": "www.brooksbrothers.com",
+    "price_range": "High"
+  },
+  {
+    "brand_id": "NAUTICA",
+    "brand_name": "Nautica",
+    "category": "Mid-Range",
+    "country": "USA",
+    "year_founded": 1983,
+    "website": "www.nautica.com",
+    "price_range": "Medium"
+  },
+  {
+    "brand_id": "LEVIS",
+    "brand_name": "Levi's",
+    "category": "Mid-Range",
+    "country": "USA",
+    "year_founded": 1853,
+    "website": "www.levis.com",
+    "price_range": "Medium"
+  },
+  {
+    "brand_id": "DOCKERS",
+    "brand_name": "Dockers",
+    "category": "Mid-Range",
+    "country": "USA",
+    "year_founded": 1986,
+    "website": "www.dockers.com",
+    "price_range": "Medium"
+  },
+  {
+    "brand_id": "NIKE",
+    "brand_name": "Nike",
+    "category": "Athletic",
+    "country": "USA",
+    "year_founded": 1964,
+    "website": "www.nike.com",
+    "price_range": "Medium-High"
+  },
+  {
+    "brand_id": "ADIDAS",
+    "brand_name": "Adidas",
+    "category": "Athletic",
+    "country": "Germany",
+    "year_founded": 1949,
+    "website": "www.adidas.com",
+    "price_range": "Medium-High"
+  },
+  {
+    "brand_id": "UNDERARMOUR",
+    "brand_name": "Under Armour",
+    "category": "Athletic",
+    "country": "USA",
+    "year_founded": 1996,
+    "website": "www.underarmour.com",
+    "price_range": "Medium"
+  }
+]
