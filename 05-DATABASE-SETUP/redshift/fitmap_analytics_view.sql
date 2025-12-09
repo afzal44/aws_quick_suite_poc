@@ -1,5 +1,5 @@
 -- ============================================================================
--- FitMap Analytics View - Dashboard Ready
+-- FitMap Analytics View - Dashboard Ready (FitMap Data Only)
 -- ============================================================================
 
 CREATE OR REPLACE VIEW qspos.fitmap_analytics AS
@@ -13,6 +13,8 @@ SELECT
     ss.scanning_mode,
     CAST(ss.year AS INTEGER) AS scan_year,
     CAST(ss.month AS INTEGER) AS scan_month,
+    DATE_TRUNC('month', TO_TIMESTAMP(ss.date, 'DD-MM-YYYY HH24:MI')) AS scan_month_date,
+    DATE_TRUNC('week', TO_TIMESTAMP(ss.date, 'DD-MM-YYYY HH24:MI')) AS scan_week_date,
     
     -- User Demographics
     su.age,
@@ -24,6 +26,16 @@ SELECT
     su.customer_type,
     su.scan_count,
     su.last_scan_date,
+    
+    -- Age Group (for dashboard filtering)
+    CASE
+        WHEN su.age < 25 THEN '18-24'
+        WHEN su.age BETWEEN 25 AND 34 THEN '25-34'
+        WHEN su.age BETWEEN 35 AND 44 THEN '35-44'
+        WHEN su.age BETWEEN 45 AND 54 THEN '45-54'
+        WHEN su.age BETWEEN 55 AND 64 THEN '55-64'
+        ELSE '65+'
+    END AS age_group,
     
     -- Body Measurements (DXL Custom)
     sdcm.chest AS chest_circumference,
@@ -56,57 +68,31 @@ SELECT
         ELSE 'Regular'
     END AS body_type_segment,
     
-    -- Order Information (joined via email within 30 days)
-    o.orderid,
-    o.createdtimestamp AS purchase_date,
-    o.ordertypeid,
-    o.order_source,
-    o.device_type,
-    o.customeremail,
-    
-    -- Order Line Details
-    ol.orderlineid,
-    ol.isreturn,
-    ol.orderlinetotal,
-    ol.quantity,
-    ol.unitprice,
-    ol.totaldiscounts,
-    
-    -- Item Details
-    oli.itemid,
-    oli.itemsize,
-    oli.itembrand,
-    oli.itemdepartmentname,
-    oli.itemdescription,
+    -- Fit Score (0-100 based on measurement consistency)
+    ROUND(
+        100 - (
+            ABS(sdcm.chest - (su.weight * 0.5)) / NULLIF(sdcm.chest, 0) * 10 +
+            ABS(sdcm.trouserwaist - (su.weight * 0.4)) / NULLIF(sdcm.trouserwaist, 0) * 10
+        ), 1
+    ) AS fit_score,
     
     -- Calculated Metrics for Dashboard
-    CASE WHEN ss.status = 'COMPLETED' THEN 1 ELSE 0 END AS scan_completed_flag,
-    CASE WHEN o.orderid IS NOT NULL THEN 1 ELSE 0 END AS purchase_made_flag,
-    CASE WHEN ol.isreturn = TRUE THEN 1 ELSE 0 END AS return_flag,
+    CASE WHEN UPPER(ss.status) = 'COMPLETE' THEN 1 ELSE 0 END AS scan_completed_flag,
+    CASE WHEN su.scan_count > 1 THEN 1 ELSE 0 END AS repeat_user_flag,
     
-    -- Days between scan and purchase
+    -- Measurement Quality Indicators
     CASE 
-        WHEN o.createdtimestamp IS NOT NULL 
-        THEN DATEDIFF(day, CAST(ss.date AS TIMESTAMP), CAST(o.createdtimestamp AS TIMESTAMP))
-        ELSE NULL 
-    END AS days_to_purchase
+        WHEN sdcm.chest IS NOT NULL 
+        AND sdcm.trouserwaist IS NOT NULL 
+        AND sdcm.inseamleft IS NOT NULL 
+        AND sdcm.shoulderwidth IS NOT NULL 
+        THEN 1 ELSE 0 
+    END AS complete_measurement_flag
 
 FROM qspos.size_scans ss
 
-LEFT JOIN qspos.size_users su 
+INNER JOIN qspos.size_users su 
     ON ss.user_id = su.id
 
 LEFT JOIN qspos.size_dxl_custom_measures sdcm 
-    ON ss.scan_id = sdcm.scan_id
-
-LEFT JOIN qspos.orderheader o 
-    ON LOWER(TRIM(su.email)) = LOWER(TRIM(o.customeremail))
-    AND CAST(o.createdtimestamp AS TIMESTAMP) >= CAST(ss.date AS TIMESTAMP)
-    AND CAST(o.createdtimestamp AS TIMESTAMP) <= DATEADD(day, 30, CAST(ss.date AS TIMESTAMP))
-
-LEFT JOIN qspos.orderline ol 
-    ON o.orderid = ol.orderid
-
-LEFT JOIN qspos.orderline_items oli
-    ON ol.itemid = oli.itemid;
-
+    ON ss.scan_id = sdcm.scan_id;
