@@ -1,8 +1,9 @@
 # AWS Quick Suite POC - S3 Upload Script (PowerShell)
 # Replace YOUR_BUCKET_NAME with your actual S3 bucket name
 
-$BUCKET_NAME = "dxl-quicksuite-poc-data"
+$BUCKET_NAME = "dxl-quicksuite-poc"
 $REGION = "us-east-1"
+$PROFILE = "qloudx"
 
 Write-Host "============================================================" -ForegroundColor Cyan
 Write-Host "AWS Quick Suite POC - S3 Upload Script" -ForegroundColor Cyan
@@ -10,6 +11,7 @@ Write-Host "============================================================" -Foreg
 Write-Host ""
 Write-Host "Bucket: $BUCKET_NAME"
 Write-Host "Region: $REGION"
+Write-Host "Profile: $PROFILE"
 Write-Host ""
 Write-Host "============================================================" -ForegroundColor Cyan
 
@@ -26,7 +28,7 @@ try {
 
 Write-Host ""
 Write-Host "Step 1: Creating S3 bucket..." -ForegroundColor Yellow
-aws s3 mb s3://$BUCKET_NAME --region $REGION 2>$null
+aws s3 mb s3://$BUCKET_NAME --region $REGION --profile $PROFILE 2>$null
 if ($LASTEXITCODE -ne 0) {
     Write-Host "Bucket already exists or error creating bucket (this is OK)" -ForegroundColor Yellow
 } else {
@@ -47,7 +49,7 @@ foreach ($file in $fitMapFiles) {
     if (Test-Path $file) {
         $tableName = $file -replace '.csv', ''
         Write-Host "  Uploading $file..." -NoNewline
-        aws s3 cp $file s3://$BUCKET_NAME/fitmap/$tableName/$file --quiet
+        aws s3 cp $file s3://$BUCKET_NAME/fitmap/$tableName/$file --quiet --profile $PROFILE
         if ($LASTEXITCODE -eq 0) {
             Write-Host " [OK]" -ForegroundColor Green
         } else {
@@ -75,7 +77,7 @@ foreach ($file in $customerFiles) {
     if (Test-Path $file) {
         $tableName = $file -replace '.csv', ''
         Write-Host "  Uploading $file..." -NoNewline
-        aws s3 cp $file s3://$BUCKET_NAME/customer/$tableName/$file --quiet
+        aws s3 cp $file s3://$BUCKET_NAME/customer/$tableName/$file --quiet --profile $PROFILE
         if ($LASTEXITCODE -eq 0) {
             Write-Host " [OK]" -ForegroundColor Green
         } else {
@@ -102,7 +104,7 @@ foreach ($file in $orderFiles) {
     if (Test-Path $file) {
         $tableName = $file -replace '.csv', ''
         Write-Host "  Uploading $file..." -NoNewline
-        aws s3 cp $file s3://$BUCKET_NAME/orders/$tableName/$file --quiet
+        aws s3 cp $file s3://$BUCKET_NAME/orders/$tableName/$file --quiet --profile $PROFILE
         if ($LASTEXITCODE -eq 0) {
             Write-Host " [OK]" -ForegroundColor Green
         } else {
@@ -117,7 +119,7 @@ Write-Host ""
 Write-Host "============================================================" -ForegroundColor Cyan
 Write-Host "Step 5: Verifying upload..." -ForegroundColor Yellow
 Write-Host "============================================================" -ForegroundColor Cyan
-aws s3 ls s3://$BUCKET_NAME/ --recursive --human-readable --summarize
+aws s3 ls s3://$BUCKET_NAME/ --recursive --human-readable --summarize --profile $PROFILE
 
 Write-Host ""
 Write-Host "============================================================" -ForegroundColor Cyan

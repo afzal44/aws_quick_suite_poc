@@ -1,24 +1,24 @@
 -- ============================================================================
 -- AWS Quick Suite POC - Redshift Table Creation Script
--- Schema: qspos
+-- Schema: qspoc
 -- Total Tables: 20
 -- ============================================================================
 
 -- Create schema if it doesn't exist
-CREATE SCHEMA IF NOT EXISTS qspos;
+CREATE SCHEMA IF NOT EXISTS qspoc;
 
 -- ============================================================================
 -- FITMAP/SIZESTREAM TABLES (5 tables)
 -- ============================================================================
 
 -- Table 1: size_users
-DROP TABLE IF EXISTS qspos.size_users CASCADE;
-CREATE TABLE qspos.size_users (
+DROP TABLE IF EXISTS qspoc.size_users CASCADE;
+CREATE TABLE qspoc.size_users (
     id VARCHAR(100) PRIMARY KEY,
     source_app VARCHAR(100),
     created VARCHAR(50),
     modified VARCHAR(50),
-    source_attendant VARCHAR(50),
+    source_attendant VARCHAR(100),
     last_name VARCHAR(100),
     first_name VARCHAR(100),
     date_of_birth VARCHAR(50),
@@ -32,7 +32,7 @@ CREATE TABLE qspos.size_users (
     gender VARCHAR(20),
     year INTEGER,
     age INTEGER,
-    bmi DECIMAL(10,2),
+    bmi DECIMAL(10,1),
     customer_type VARCHAR(50),
     scan_count INTEGER,
     last_scan_date VARCHAR(50)
@@ -41,8 +41,8 @@ DISTSTYLE AUTO
 SORTKEY (id, created);
 
 -- Table 2: size_scans
-DROP TABLE IF EXISTS qspos.size_scans CASCADE;
-CREATE TABLE qspos.size_scans (
+DROP TABLE IF EXISTS qspoc.size_scans CASCADE;
+CREATE TABLE qspoc.size_scans (
     scan_id VARCHAR(100) PRIMARY KEY,
     user_id VARCHAR(100),
     associate_login_email VARCHAR(200),
@@ -79,8 +79,8 @@ DISTSTYLE AUTO
 SORTKEY (scan_id, date);
 
 -- Table 3: size_app_measures
-DROP TABLE IF EXISTS qspos.size_app_measures CASCADE;
-CREATE TABLE qspos.size_app_measures (
+DROP TABLE IF EXISTS qspoc.size_app_measures CASCADE;
+CREATE TABLE qspoc.size_app_measures (
     inc_id INTEGER PRIMARY KEY,
     scan_id VARCHAR(100),
     bmctotal DECIMAL(10,2),
@@ -132,8 +132,8 @@ DISTSTYLE AUTO
 SORTKEY (scan_id, inc_id);
 
 -- Table 4: size_dxl_custom_measures
-DROP TABLE IF EXISTS qspos.size_dxl_custom_measures CASCADE;
-CREATE TABLE qspos.size_dxl_custom_measures (
+DROP TABLE IF EXISTS qspoc.size_dxl_custom_measures CASCADE;
+CREATE TABLE qspoc.size_dxl_custom_measures (
     inc_id INTEGER PRIMARY KEY,
     scan_id VARCHAR(100),
     producttype VARCHAR(100),
@@ -175,8 +175,8 @@ DISTSTYLE AUTO
 SORTKEY (scan_id, inc_id);
 
 -- Table 5: size_core_measures
-DROP TABLE IF EXISTS qspos.size_core_measures CASCADE;
-CREATE TABLE qspos.size_core_measures (
+DROP TABLE IF EXISTS qspoc.size_core_measures CASCADE;
+CREATE TABLE qspoc.size_core_measures (
     scan_id VARCHAR(100),
     measurement_name VARCHAR(200),
     measurement_value DECIMAL(10,2),
@@ -200,8 +200,8 @@ SORTKEY (scan_id, landmark_name);
 -- ============================================================================
 
 -- Table 6: customer
-DROP TABLE IF EXISTS qspos.customer CASCADE;
-CREATE TABLE qspos.customer (
+DROP TABLE IF EXISTS qspoc.customer CASCADE;
+CREATE TABLE qspoc.customer (
     customer_id BIGINT PRIMARY KEY,
     language_code VARCHAR(10),
     alpha_key VARCHAR(50),
@@ -248,8 +248,8 @@ DISTSTYLE AUTO
 SORTKEY (customer_id, last_name);
 
 -- Table 7: address
-DROP TABLE IF EXISTS qspos.address CASCADE;
-CREATE TABLE qspos.address (
+DROP TABLE IF EXISTS qspoc.address CASCADE;
+CREATE TABLE qspoc.address (
     customer_id BIGINT,
     address_id INTEGER,
     country_code VARCHAR(10),
@@ -288,8 +288,8 @@ DISTSTYLE AUTO
 SORTKEY (customer_id, address_id);
 
 -- Table 8: email
-DROP TABLE IF EXISTS qspos.email CASCADE;
-CREATE TABLE qspos.email (
+DROP TABLE IF EXISTS qspoc.email CASCADE;
+CREATE TABLE qspoc.email (
     customer_id BIGINT,
     email_id INTEGER,
     email_address VARCHAR(200),
@@ -309,8 +309,8 @@ DISTSTYLE AUTO
 SORTKEY (customer_id, email_id);
 
 -- Table 9: store
-DROP TABLE IF EXISTS qspos.store CASCADE;
-CREATE TABLE qspos.store (
+DROP TABLE IF EXISTS qspoc.store CASCADE;
+CREATE TABLE qspoc.store (
     store_no INTEGER PRIMARY KEY,
     division_id INTEGER,
     store_short_name VARCHAR(100),
@@ -329,8 +329,8 @@ DISTSTYLE AUTO
 SORTKEY (store_no);
 
 -- Table 10: transaction_header
-DROP TABLE IF EXISTS qspos.transaction_header CASCADE;
-CREATE TABLE qspos.transaction_header (
+DROP TABLE IF EXISTS qspoc.transaction_header CASCADE;
+CREATE TABLE qspoc.transaction_header (
     transaction_id BIGINT PRIMARY KEY,
     sales_module_transaction_id INTEGER,
     transaction_source INTEGER,
@@ -367,8 +367,8 @@ DISTSTYLE AUTO
 SORTKEY (transaction_id, transaction_date);
 
 -- Table 11: transaction_detail
-DROP TABLE IF EXISTS qspos.transaction_detail CASCADE;
-CREATE TABLE qspos.transaction_detail (
+DROP TABLE IF EXISTS qspoc.transaction_detail CASCADE;
+CREATE TABLE qspoc.transaction_detail (
     transaction_id BIGINT,
     transaction_line_no INTEGER,
     sale_or_return_indicator VARCHAR(10),
@@ -393,8 +393,8 @@ DISTSTYLE AUTO
 SORTKEY (transaction_id, transaction_line_no);
 
 -- Table 12: reward_detail
-DROP TABLE IF EXISTS qspos.reward_detail CASCADE;
-CREATE TABLE qspos.reward_detail (
+DROP TABLE IF EXISTS qspoc.reward_detail CASCADE;
+CREATE TABLE qspoc.reward_detail (
     reward_transaction_id BIGINT,
     line_no INTEGER,
     class_code BIGINT,
@@ -419,8 +419,8 @@ DISTSTYLE AUTO
 SORTKEY (reward_transaction_id, line_no);
 
 -- Table 13: household
-DROP TABLE IF EXISTS qspos.household CASCADE;
-CREATE TABLE qspos.household (
+DROP TABLE IF EXISTS qspoc.household CASCADE;
+CREATE TABLE qspoc.household (
     household_id INTEGER PRIMARY KEY,
     household_match_key VARCHAR(100)
 )
@@ -432,8 +432,8 @@ SORTKEY (household_id);
 -- ============================================================================
 
 -- Table 14: orderheader
-DROP TABLE IF EXISTS qspos.orderheader CASCADE;
-CREATE TABLE qspos.orderheader (
+DROP TABLE IF EXISTS qspoc.orderheader CASCADE;
+CREATE TABLE qspoc.orderheader (
     orderid BIGINT PRIMARY KEY,
     createdtimestamp VARCHAR(50),
     iscancelled BOOLEAN,
@@ -461,8 +461,8 @@ DISTSTYLE AUTO
 SORTKEY (orderid, createdtimestamp);
 
 -- Table 15: orderline
-DROP TABLE IF EXISTS qspos.orderline CASCADE;
-CREATE TABLE qspos.orderline (
+DROP TABLE IF EXISTS qspoc.orderline CASCADE;
+CREATE TABLE qspoc.orderline (
     orderlineid INTEGER,
     orderid BIGINT,
     itemid INTEGER,
@@ -500,8 +500,8 @@ DISTSTYLE AUTO
 SORTKEY (orderid, orderlineid);
 
 -- Table 16: orderline_items
-DROP TABLE IF EXISTS qspos.orderline_items CASCADE;
-CREATE TABLE qspos.orderline_items (
+DROP TABLE IF EXISTS qspoc.orderline_items CASCADE;
+CREATE TABLE qspoc.orderline_items (
     itemid INTEGER PRIMARY KEY,
     itembarcode VARCHAR(100),
     itembrand VARCHAR(100),
@@ -520,8 +520,8 @@ DISTSTYLE AUTO
 SORTKEY (itemid);
 
 -- Table 17: orderchargedetail
-DROP TABLE IF EXISTS qspos.orderchargedetail CASCADE;
-CREATE TABLE qspos.orderchargedetail (
+DROP TABLE IF EXISTS qspoc.orderchargedetail CASCADE;
+CREATE TABLE qspoc.orderchargedetail (
     orderid BIGINT,
     taxcode VARCHAR(50),
     chargetotal DECIMAL(18,2),
@@ -541,8 +541,8 @@ DISTSTYLE AUTO
 SORTKEY (orderid);
 
 -- Table 18: invoice
-DROP TABLE IF EXISTS qspos.invoice CASCADE;
-CREATE TABLE qspos.invoice (
+DROP TABLE IF EXISTS qspoc.invoice CASCADE;
+CREATE TABLE qspoc.invoice (
     invoiceid BIGINT PRIMARY KEY,
     invoice_pk VARCHAR(50),
     orderid BIGINT,
@@ -584,8 +584,8 @@ DISTSTYLE AUTO
 SORTKEY (invoiceid, orderid);
 
 -- Table 19: payment
-DROP TABLE IF EXISTS qspos.payment CASCADE;
-CREATE TABLE qspos.payment (
+DROP TABLE IF EXISTS qspoc.payment CASCADE;
+CREATE TABLE qspoc.payment (
     payment_pk VARCHAR(50) PRIMARY KEY,
     orderid BIGINT,
     orderpk VARCHAR(50),
@@ -607,8 +607,8 @@ DISTSTYLE AUTO
 SORTKEY (payment_pk, orderid);
 
 -- Table 20: quantitydetail
-DROP TABLE IF EXISTS qspos.quantitydetail CASCADE;
-CREATE TABLE qspos.quantitydetail (
+DROP TABLE IF EXISTS qspoc.quantitydetail CASCADE;
+CREATE TABLE qspoc.quantitydetail (
     quantitydetail_pk VARCHAR(50) PRIMARY KEY,
     quantitydetailid VARCHAR(50),
     orderid BIGINT,
@@ -635,7 +635,7 @@ SORTKEY (quantitydetail_pk, orderid);
 -- ============================================================================
 
 -- Grant SELECT to all users (adjust as needed)
--- GRANT SELECT ON ALL TABLES IN SCHEMA qspos TO PUBLIC;
+-- GRANT SELECT ON ALL TABLES IN SCHEMA qspoc TO PUBLIC;
 
 -- ============================================================================
 -- VERIFICATION QUERIES
@@ -647,13 +647,13 @@ SELECT
     tablename,
     tableowner
 FROM pg_tables
-WHERE schemaname = 'qspos'
+WHERE schemaname = 'qspoc'
 ORDER BY tablename;
 
 -- Count tables in schema
 SELECT COUNT(*) as table_count
 FROM pg_tables
-WHERE schemaname = 'qspos';
+WHERE schemaname = 'qspoc';
 
 -- ============================================================================
 -- END OF SCRIPT

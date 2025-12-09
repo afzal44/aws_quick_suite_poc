@@ -12,7 +12,7 @@ import sys
 from pathlib import Path
 
 # Configuration from upload_dimensions_to_s3.ps1
-BUCKET_NAME = "dxl-quicksuite-poc-data"
+BUCKET_NAME = "dxl-quicksuite-poc"
 REGION = "us-east-1"
 S3_FOLDER = "dimensions/products"
 
@@ -46,10 +46,11 @@ def main():
     
     print(f"Loaded {len(products)} products")
     
-    # Initialize S3 client
-    print(f"\nConnecting to AWS S3 (region: {REGION})...")
+    # Initialize S3 client with qloudx profile
+    print(f"\nConnecting to AWS S3 (region: {REGION}) using profile 'qloudx'...")
     try:
-        s3_client = boto3.client('s3', region_name=REGION)
+        session = boto3.Session(profile_name='qloudx')
+        s3_client = session.client('s3', region_name=REGION)
         # Test connection
         s3_client.head_bucket(Bucket=BUCKET_NAME)
         print(f"Connected to bucket: {BUCKET_NAME}")
@@ -65,8 +66,8 @@ def main():
     except Exception as e:
         print(f"ERROR: Failed to connect to AWS - {e}")
         print("\nPlease ensure:")
-        print("  1. AWS CLI is configured (run: aws configure)")
-        print("  2. You have valid AWS credentials")
+        print("  1. AWS CLI is configured with 'qloudx' profile (run: aws configure --profile qloudx)")
+        print("  2. You have valid AWS credentials for the qloudx profile")
         print("  3. You have S3 access permissions")
         sys.exit(1)
     
